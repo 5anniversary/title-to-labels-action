@@ -4818,7 +4818,7 @@ function parseTitle(title, {keywords, labels}) {
 
   titleParts.forEach(part => {
     const cleanedPart = part.replace(/[\[\]]/g, '').trim().toLowerCase();
-    if (keywords.some(keyword => keyword.toLowerCase() === cleanedPart)) {
+    if (keywords.some(keyword => cleanedPart.includes(keyword.toLowerCase()))) {
       foundKeywords.push(cleanedPart);
     } else {
       cleanTitleParts.push(part.replace(/[\[\]]/g, '').trim());
