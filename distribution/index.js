@@ -63,6 +63,7 @@ async function run() {
 
 	if (labels.length === 0) {
 	  core.info('No labels to add');
+          return;
 	}
 
 	const octokit = new Octokit();
