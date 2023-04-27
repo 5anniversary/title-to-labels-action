@@ -1,4 +1,6 @@
 {
+	"name": "title-to-labels-action",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"build": "ncc build index.js -o distribution --source-map --license licenses.txt",
