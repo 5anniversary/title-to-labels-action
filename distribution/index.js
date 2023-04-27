@@ -58,7 +58,7 @@ async function run() {
 	const {title, labels} = update;
 
 	if (conversation.title === title) {
-	  core.info('No title changes needed ${title} ${conversation.title} 타이틀에 없나요?');
+	  core.info('No title changes needed');
 	}
 
 	if (labels.length === 0) {
