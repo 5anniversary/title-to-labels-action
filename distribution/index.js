@@ -73,8 +73,9 @@ async function run() {
 	const octokit = new Octokit();
 	const issue_number = conversation.number;
 	const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-	await Promise.all([
-		octokit.issues.update({owner, repo, issue_number, title})
+	await Promise.all([		
+		octokit.issues.addLabels({owner, repo, labels, issue_number}),
+		octokit.issues.update({owner, repo, issue_number, conversation.title})
 	]);
 }
 
