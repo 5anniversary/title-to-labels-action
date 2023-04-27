@@ -57,10 +57,18 @@ async function run() {
 	const {title, labels} = update;
 
 	if (conversation.title === title) {
-		core.info('No title changes needed');
-		return;
+	  core.info('No title changes needed ${title} ${conversation.title} 타이틀에 없나요?');
+	} else {
+	  core.info(`Changing title from "${conversation.title}" to ${title}`);
+	  await octokit.issues.update({owner, repo, issue_number, title});
 	}
 
+	if (labels.length === 0) {
+	  core.info('No labels to add');
+	} else {
+	  core.info(`Adding labels: ${labels.join(', ')}`);
+	  await octokit.issues.addLabels({owner, repo, labels, issue_number});
+	}
 	core.info(`Changing title from "${conversation.title}" to ${title}`);
 	core.info(`Adding labels: ${labels.join(', ')}`);
 
