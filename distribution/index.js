@@ -55,7 +55,7 @@ async function run() {
 		update = parseTitleWithDefaults(conversation.title);
 	}
 
-	const {title, labels} = update;
+	const {labels, title} = update;
 
 	if (conversation.title === title) {
 	  core.info('No title changes needed');
