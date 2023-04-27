@@ -57,7 +57,7 @@ async function run() {
 
 	const {title, labels} = update;
 	console.log(title);
-	console.log(labels);
+	console.log(core.getInput('labels'));
 	if (conversation.title === title) {
 	  core.info('No title changes needed ${title} ${conversation.title} 타이틀에 없나요?');
 	} else {
