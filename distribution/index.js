@@ -4831,6 +4831,9 @@ function parseTitle(title, {keywords, labels}) {
   });
 
   const cleanTitle = cleanTitleParts.join(' / ');
+  console.log(labels);
+  console.log(cleanTitle);
+
   return {
     labels: foundKeywords.length > 0 ? labels : [],
     title: cleanTitle
