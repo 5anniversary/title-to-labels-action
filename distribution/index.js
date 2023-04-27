@@ -68,10 +68,10 @@ async function run() {
 
 	const octokit = new Octokit();
 	const issue_number = conversation.number;
-	const repo = process.env.GITHUB_REPOSITORY;
+	const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
 	console.log("asdasd", octokit.issues.addLabels);
 	await Promise.all([		
-		octokit.issues.addLabels({repo, labels, issue_number})
+		octokit.issues.addLabels({owner, repo, labels, issue_number})
 	]);
 }
 
