@@ -42,7 +42,7 @@ async function run() {
 	const {title, labels} = update;
 
 	if (conversation.title === title) {
-	  core.info('No title changes needed ${title} ${conversation.title}');
+	  core.info('No title changes needed ${title} ${conversation.title} 타이틀에 없나요?');
 	} else {
 	  core.info(`Changing title from "${conversation.title}" to ${title}`);
 	  await octokit.issues.update({owner, repo, issue_number, title});
