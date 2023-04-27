@@ -56,9 +56,10 @@ async function run() {
 	}
 
 	const {labels, title} = update;
-
+	console.log("asdasd", labels, title, conversation.title);
 	if (conversation.title === title) {
 	  core.info('No title changes needed');
+	  return;
 	}
 
 	if (labels.length === 0) {
@@ -67,13 +68,10 @@ async function run() {
 	  core.info(`Adding labels: ${labels.join(', ')}`);
 	  await octokit.issues.addLabels({owner, repo, labels, issue_number});
 	}
-	core.info(`Changing title from "${conversation.title}" to ${title}`);
-	core.info(`Adding labels: ${labels.join(', ')}`);
 
 	const octokit = new Octokit();
 	const issue_number = conversation.number;
 	const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-	console.log("asdasd", labels, title);
 	await Promise.all([		
 		octokit.issues.addLabels({owner, repo, labels, issue_number})
 	]);
