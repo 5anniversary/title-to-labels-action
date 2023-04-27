@@ -46,7 +46,6 @@ async function run() {
 	const conversation = event.issue || event.pull_request;
 	let update = {};
 	if (core.getInput('keywords')) {	  
-		console.log(conversation.title);
 		update = parseTitle(conversation.title, getInputs());
 	} else if (core.getInput('labels')) {
 		throw new Error('Labels can’t be set without keywords. Set neither, set only keywords, or set both.');
@@ -64,9 +63,6 @@ async function run() {
 
 	if (labels.length === 0) {
 	  core.info('No labels to add');
-	} else {
-	  core.info(`Adding labels: ${labels.join(', ')}`);
-	  await octokit.issues.addLabels({owner, repo, labels, issue_number});
 	}
 
 	const octokit = new Octokit();
@@ -4830,8 +4826,8 @@ function parseTitle(title, {keywords, labels}) {
   });
 
   const cleanTitle = cleanTitleParts.join(' / ');
-  console.log(labels);
-  console.log(cleanTitle);
+  console.log("asdasd labels", labels);
+  console.log("asdasd cleantitle", cleanTitle);
 
   return {
     labels: foundKeywords.length > 0 ? labels : [],
@@ -4841,7 +4837,6 @@ function parseTitle(title, {keywords, labels}) {
 
 function parseTitleWithDefaults(title) {
 	for (const {keywords, labels} of defaults) {
-		console.log(keywords, labels);
 		const updates = parseTitle(title, {keywords, labels});
 		if (title !== updates.title) {
 			return updates;
