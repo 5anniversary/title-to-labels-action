@@ -46,7 +46,7 @@ async function run() {
 	const conversation = event.issue || event.pull_request;
 	let update = {};
 	if (core.getInput('keywords')) {	  
-		console.log(conversation);
+		console.log(conversation.title);
 		update = parseTitle(conversation.title, getInputs());
 	} else if (core.getInput('labels')) {
 		throw new Error('Labels can’t be set without keywords. Set neither, set only keywords, or set both.');
@@ -56,7 +56,8 @@ async function run() {
 	}
 
 	const {title, labels} = update;
-
+	console.log(title);
+	console.log(labels);
 	if (conversation.title === title) {
 	  core.info('No title changes needed ${title} ${conversation.title} 타이틀에 없나요?');
 	} else {
