@@ -4815,26 +4815,26 @@ function titleCase(string) {
 }
 
 function parseTitle(title, {keywords, labels}) {
-	const separator = /[)\-:\]]+/.exec(title);
-	console.log(separator);
-	if (!separator) {
-		return {title, labels: []};
-	}
+  const separators = /[)\-:\]]+/g;
+  const titleParts = title.split(separators);
 
-	const intro = title
-		.slice(0, separator.index)
-		.replace(/[^\s\w]/g, '')
-		.trim()
-		.toLowerCase();
-	if (intro && keywords.some(keyword => keyword.toLowerCase() === intro)) {
-		const cleanTitle = title.slice(separator.index + separator[0].length).trim();
-		return {
-			labels: labels ? labels : [],
-			title: titleCase(cleanTitle)
-		};
-	}
+  const foundKeywords = [];
+  const cleanTitleParts = [];
 
-	return {title, labels: []};
+  titleParts.forEach(part => {
+    const cleanedPart = part.trim().toLowerCase();
+    if (keywords.some(keyword => keyword.toLowerCase() === cleanedPart)) {
+      foundKeywords.push(cleanedPart);
+    } else {
+      cleanTitleParts.push(part.trim());
+    }
+  });
+
+  const cleanTitle = cleanTitleParts.join(' / ');
+  return {
+    labels: foundKeywords.length > 0 ? labels : [],
+    title: cleanTitle
+  };
 }
 
 function parseTitleWithDefaults(title) {
