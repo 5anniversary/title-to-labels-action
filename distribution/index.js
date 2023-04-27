@@ -45,7 +45,8 @@ async function run() {
 
 	const conversation = event.issue || event.pull_request;
 	let update = {};
-	if (core.getInput('keywords')) {
+	if (core.getInput('keywords')) {	  
+		core.info(conversation);
 		update = parseTitle(conversation.title, getInputs());
 	} else if (core.getInput('labels')) {
 		throw new Error('Labels can’t be set without keywords. Set neither, set only keywords, or set both.');
