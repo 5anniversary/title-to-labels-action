@@ -4823,11 +4823,11 @@ function parseTitle(title, {keywords, labels}) {
   const cleanTitleParts = [];
 
   titleParts.forEach(part => {
-    const cleanedPart = part.trim().toLowerCase();
+    const cleanedPart = part.replace(/[\[\]]/g, '').trim().toLowerCase();
     if (keywords.some(keyword => keyword.toLowerCase() === cleanedPart)) {
       foundKeywords.push(cleanedPart);
     } else {
-      cleanTitleParts.push(part.trim());
+      cleanTitleParts.push(part.replace(/[\[\]]/g, '').trim());
     }
   });
 
