@@ -4827,6 +4827,7 @@ function parseTitle(title, {keywords, labels}) {
 
   const cleanTitle = cleanTitleParts.join(' / ');
   console.log("asdasd labels", labels);
+  console.log("asdasd keywords", keywords);
   console.log("asdasd cleantitle", cleanTitle);
 
   return {
