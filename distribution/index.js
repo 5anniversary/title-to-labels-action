@@ -4812,7 +4812,7 @@ function titleCase(string) {
 }
 
 function parseTitle(title, {keywords, labels}) {
-  const separators = /[)\-:\]]+/g;
+  const separators = /^\[(.+?)\]/;
   const titleParts = title.split(separators);
 
   const foundKeywords = [];
