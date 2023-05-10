@@ -4834,8 +4834,8 @@ function parseTitle(title, {keywords, labels}) {
 
   // Remaining function logic
   return {
-    keywords: foundKeywords,
-    cleanTitle: cleanTitleParts.join(' ')
+    labels: foundKeywords.length > 0 ? labels : [],
+    title: cleanTitleParts.join(' ')
   };
 }
 
