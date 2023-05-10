@@ -4813,28 +4813,29 @@ function titleCase(string) {
 
 function parseTitle(title, {keywords, labels}) {
   const separators = /\[(.+?)\]/g;
-  const titleParts = title.split(separators);
+  const titleParts = [];
+  let match;
+
+  while ((match = separators.exec(title)) !== null) {
+    titleParts.push(match[1]);
+  }
 
   const foundKeywords = [];
   const cleanTitleParts = [];
 
   titleParts.forEach(part => {
-    const cleanedPart = part.replace(/[\[\]]/g, '').trim().toLowerCase();
+    const cleanedPart = part.trim().toLowerCase();
     if (keywords.some(keyword => cleanedPart.includes(keyword.toLowerCase()))) {
       foundKeywords.push(cleanedPart);
     } else {
-      cleanTitleParts.push(part.replace(/[\[\]]/g, '').trim());
+      cleanTitleParts.push(part.trim());
     }
   });
 
-  const cleanTitle = cleanTitleParts.join(' / ');
-  console.log("asdasd labels", labels);
-  console.log("asdasd keywords", keywords);
-  console.log("asdasd cleantitle", cleanTitle);
-
+  // Remaining function logic
   return {
-    labels: foundKeywords.length > 0 ? labels : [],
-    title: cleanTitle
+    keywords: foundKeywords,
+    cleanTitle: cleanTitleParts.join(' ')
   };
 }
 
